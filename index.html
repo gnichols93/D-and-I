@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<style>
+		@font-face {
+	font-family: 'Imago-Book';
+	src: url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottboo.eot');
+	src: url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottboo.eot?#iefix') format('embedded-opentype'),
+			 url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottboo.woff') format('woff'),
+			 url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottboo.ttf') format('truetype'),
+			 url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottboo.svg#imagottboo') format('svg');
+	font-weight: normal;
+	font-style: normal
+}
+@font-face {
+	font-family: 'Imago-Medium';
+	src: url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottmed.eot');
+	src: url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottmed.eot?#iefix') format('embedded-opentype'),
+			 url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottmed.woff') format('woff'),
+			 url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottmed.ttf') format('truetype'),
+			 url('https://usinfo.roche.com/rs/975-FPO-828/images/imagottmed.svg#imagottmed') format('svg');
+	font-weight: normal;
+	font-style: normal
+}
+		
+		.indicator{
+			height: 10px;
+			width:10px;
+			border-radius: 3px;
+			background-color: rgba(255,255,255,0.75);
+			display: inline-block;
+			margin: 10px 5px;
+		}
+		
+		body {
+			text-align: center;
+			background-color: #D6D6D6;
+		}
+		
+		#currentQuestionBox {
+			width: 50%;
+			margin: 20px auto;
+			
+		}
+		#currentQuestion {
+			color: #fff;
+			font-family: Imago, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+			font-size: 22px;
+			line-height: 28px;
+		}
+		
+		#btnClick{
+			display: inline-block;
+			text-decoration: none;
+			font-family: Imago, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+			font-weight: bold;
+			margin-top: 30px;
+			background-color: #f89620;
+			padding: 10px 20px;
+			border-radius: 10px;
+			font-size: 18px;
+			color: #fff;
+			border: 2px solid #fff;
+			outline: none;
+			-webkit-box-shadow: 0px 5px 14px -4px rgba(0,0,0,0.75);
+			-moz-box-shadow: 0px 5px 14px -4px rgba(0,0,0,0.75);
+			box-shadow: 0px 5px 14px -4px rgba(0,0,0,0.75);
+		}
+		
+	</style>
+	
+	<script type="text/javascript">
+		//document.getElementById("btnClick").onclick = clickEvent;
+		var indicatorCount = 1;
+		
+		var listOfQuestions = ['How is diversity and inclusion personal to you?', 'What does “be inclusive” mean to you?', 'In your opinion, who is responsible for creating a diverse climate in the workplace?', 'Talk about a time when you felt included and then contrast that with a time when you didn’t feel included.', 'How do you define diversity?  Is diversity only a “buzzword?”', 'In what ways can stereotypes threaten or interfere with people’s ability to succeed in the workplace/advance in their careers?'];
+		
+		var backgroundColors = ['#6fbf83', '#ef4663', '#2d90cf', '#00b9b3', '#8ed8f8', '#8f2b8a'];
+		
+		
+		function clickEvent(){	
+			changeQuestion();
+		};
+		
+		
+		
+		function changeColor(){
+			var randomNumber = Math.floor(Math.random() * backgroundColors.length);
+			
+			document.getElementById("bodyColor").style.backgroundColor = backgroundColors[randomNumber];
+			backgroundColors.splice(randomNumber, 1);
+			//return randomNumber;
+		};
+		
+		function changeQuestion(){
+			
+			if (indicatorCount > 6){
+				document.getElementById("currentQuestion").innerHTML = "No new questions";
+				document.getElementById("currentQuestion").innerHTML = '<a onClick="reset();" href="#">RESET</a>';
+			}else{
+				var randomNumber = Math.floor(Math.random() * listOfQuestions.length);
+				document.getElementById("currentQuestion").innerHTML = listOfQuestions[randomNumber];
+				changeColor();
+				changeIndicator();
+			
+				listOfQuestions.splice(randomNumber, 1);
+			}
+			
+		};
+		
+		
+		function changeIndicator() {
+			var indicatorString = indicatorCount.toString();
+			var newIndicator = "indicator" + indicatorString;
+			//
+			console.log(newIndicator);
+			document.getElementById(newIndicator).style.opacity = 0.2;
+			indicatorCount++;
+		};
+		
+		function reset() {
+			console.log('reset function called');
+			
+			indicatorCount = 1;
+		
+			listOfQuestions = ['How is diversity and inclusion personal to you?', 'What does “be inclusive” mean to you?', 'In your opinion, who is responsible for creating a diverse climate in the workplace?', 'Talk about a time when you felt included and then contrast that with a time when you didn’t feel included.', 'How do you define diversity?  Is diversity only a “buzzword?”', 'In what ways can stereotypes threaten or interfere with people’s ability to succeed in the workplace/advance in their careers?'];
+		
+			backgroundColors = ['#6fbf83', '#ef4663', '#2d90cf', '#00b9b3', '#8ed8f8', '#8f2b8a'];
+			
+			document.getElementById("currentQuestion").innerHTML = "";
+			
+			document.getElementById("bodyColor").style.backgroundColor = '#D6D6D6';
+			//document.getElementById("indicator1").style.opacity = 0.75;
+			for (i=1; i<=listOfQuestions.length; i++){
+				var resetIndicatorString = i.toString();
+				var resetIndicator = "indicator"+resetIndicatorString;
+				console.log(resetIndicatorString);
+				document.getElementById(resetIndicator).style.opacity = 0.75;
+			}
+			
+		
+		}
+		
+	</script>
+	
+	
+</head>
+
+<body id="bodyColor">
+	<div>
+		<div class="indicator" id="indicator1"></div>
+		<div class="indicator" id="indicator2"></div>
+		<div class="indicator" id="indicator3"></div>
+		<div class="indicator" id="indicator4"></div>
+		<div class="indicator" id="indicator5"></div>
+		<div class="indicator" id="indicator6"></div>
+	</div>
+	
+	<a id="btnClick" onClick="clickEvent();" href="#" >View Question</a>
+	
+	
+	
+	<div id="currentQuestionBox">
+		<p id="currentQuestion"></p>
+	</div>
+</body>
+</html>
