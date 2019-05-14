@@ -77,9 +77,9 @@
 		//document.getElementById("btnClick").onclick = clickEvent;
 		var indicatorCount = 1;
 		
-		var listOfQuestions = ['How is diversity and inclusion personal to you?', 'What does “be inclusive” mean to you?', 'In your opinion, who is responsible for creating a diverse climate in the workplace?', 'Talk about a time when you felt included and then contrast that with a time when you didn’t feel included.', 'How do you define diversity?  Is diversity only a “buzzword?”', 'In what ways can stereotypes threaten or interfere with people’s ability to succeed in the workplace/advance in their careers?'];
+		var listOfQuestions = ['What do you think creates a sense of belonging for people? ', 'Do you feel like you belong at Roche? ', 'Are there times when you feel like you can’t be yourself at work?  Why?', 'How does creating trust in the workplace lead to greater inclusion?', 'How do you build trust?', 'Talk about a time when you felt excluded.', 'What creates a sense of belonging for you?', 'Are there times when you feel your uniqueness or diversity creates barrier for feeling included?'];
 		
-		var backgroundColors = ['#6fbf83', '#ef4663', '#2d90cf', '#00b9b3', '#8ed8f8', '#8f2b8a'];
+		var backgroundColors = ['#6fbf83', '#ef4663', '#2d90cf', '#00b9b3', '#8ed8f8', '#8f2b8a', '#8ed8f8', '#8f2b8a' ];
 		
 		
 		function clickEvent(){	
@@ -98,7 +98,8 @@
 		
 		function changeQuestion(){
 			
-			if (indicatorCount > 6){
+			if (indicatorCount > 8){
+				document.getElementById("btnClick").style.display = "none";
 				document.getElementById("currentQuestion").innerHTML = "No new questions";
 				document.getElementById("currentQuestion").innerHTML = '<a onClick="reset();" href="#">RESET</a>';
 			}else{
@@ -126,10 +127,12 @@
 			console.log('reset function called');
 			
 			indicatorCount = 1;
+			
+			document.getElementById("btnClick").style.display = "inline-block";
 		
-			listOfQuestions = ['How is diversity and inclusion personal to you?', 'What does “be inclusive” mean to you?', 'In your opinion, who is responsible for creating a diverse climate in the workplace?', 'Talk about a time when you felt included and then contrast that with a time when you didn’t feel included.', 'How do you define diversity?  Is diversity only a “buzzword?”', 'In what ways can stereotypes threaten or interfere with people’s ability to succeed in the workplace/advance in their careers?'];
+			listOfQuestions = ['What do you think creates a sense of belonging for people? ', 'Do you feel like you belong at Roche? ', 'Are there times when you feel like you can’t be yourself at work?  Why?', 'How does creating trust in the workplace lead to greater inclusion?', 'How do you build trust?', 'Talk about a time when you felt excluded.', 'What creates a sense of belonging for you?', 'Are there times when you feel your uniqueness or diversity creates barrier for feeling included?'];
 		
-			backgroundColors = ['#6fbf83', '#ef4663', '#2d90cf', '#00b9b3', '#8ed8f8', '#8f2b8a'];
+			backgroundColors = ['#6fbf83', '#ef4663', '#2d90cf', '#00b9b3', '#8ed8f8', '#8f2b8a', '#8ed8f8', '#8f2b8a'];
 			
 			document.getElementById("currentQuestion").innerHTML = "";
 			
@@ -158,14 +161,12 @@
 		<div class="indicator" id="indicator4"></div>
 		<div class="indicator" id="indicator5"></div>
 		<div class="indicator" id="indicator6"></div>
+		<div class="indicator" id="indicator7"></div>
+		<div class="indicator" id="indicator8"></div>
 	</div>
-	
-	<a id="btnClick" onClick="clickEvent();" href="#" >View Question</a>
-	
-	
-	
+	<a id="btnClick" onClick="clickEvent();" href="#">View Question</a>
 	<div id="currentQuestionBox">
-		<p id="currentQuestion"></p>
+	  <p id="currentQuestion"></p>
 	</div>
 </body>
 </html>
